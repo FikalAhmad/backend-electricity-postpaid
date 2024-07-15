@@ -1,0 +1,1 @@
+CREATE INDEX idx_nama_level ON public.level USING btree (nama_level);

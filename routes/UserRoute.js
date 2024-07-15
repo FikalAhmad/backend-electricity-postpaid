@@ -6,18 +6,17 @@ import {
   Register,
   Login,
   Logout,
+  deleteUser,
 } from "../controller/UserController.js";
-import { verifyToken } from "../middleware/VerifyToken.js";
-import { refreshToken } from "../controller/RefreshToken.js";
 
 const router = express.Router();
 
-router.get("/users", verifyToken, getUsers);
-router.get("/users/:id", getUserById);
-router.patch("/users/:id", updateUser);
-router.post("/users", Register);
+router.get("/user", getUsers);
+router.get("/user/:id", getUserById);
+router.patch("/user/:id", updateUser);
+router.post("/user", Register);
 router.post("/login", Login);
-router.get("/token", refreshToken);
+router.delete("/user/:id", deleteUser);
 router.delete("/logout", Logout);
 
 export default router;

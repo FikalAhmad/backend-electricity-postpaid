@@ -1,0 +1,1 @@
+INSERT INTO level VALUES (1, 'Admin');

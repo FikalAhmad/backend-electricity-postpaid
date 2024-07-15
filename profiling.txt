@@ -1,0 +1,123 @@
+Statistical profiling result from isolate-00000294C09D3C60-12924-v8.log, (5551 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+   5390   97.1%          C:\WINDOWS\SYSTEM32\ntdll.dll
+    156    2.8%          C:\Program Files\nodejs\node.exe
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      1    0.0%   20.0%  JS: ^push node:internal/fixed_queue:99:7
+      1    0.0%   20.0%  JS: ^isKey D:\Code\backend-postgres\node_modules\lodash\lodash.js:6366:19
+      1    0.0%   20.0%  JS: ^dirname node:path:657:10
+      1    0.0%   20.0%  JS: ^Module._resolveFilename node:internal/modules/cjs/loader:1057:35
+      1    0.0%   20.0%  JS: *resolve node:path:162:10
+
+ [C++]:
+   ticks  total  nonlib   name
+
+ [Summary]:
+   ticks  total  nonlib   name
+      5    0.1%  100.0%  JavaScript
+      0    0.0%    0.0%  C++
+      6    0.1%  120.0%  GC
+   5546   99.9%          Shared libraries
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+   5390   97.1%  C:\WINDOWS\SYSTEM32\ntdll.dll
+
+    156    2.8%  C:\Program Files\nodejs\node.exe
+    127   81.4%    C:\Program Files\nodejs\node.exe
+     43   33.9%      JS: ^internalCompileFunction node:internal/vm:124:33
+     40   93.0%        JS: ^wrapSafe node:internal/modules/cjs/loader:1253:18
+     40  100.0%          JS: ^Module._compile node:internal/modules/cjs/loader:1322:37
+     39   97.5%            JS: ^Module._extensions..js node:internal/modules/cjs/loader:1381:37
+      1    2.5%            JS: ~Module._extensions..js node:internal/modules/cjs/loader:1381:37
+      3    7.0%        JS: ~wrapSafe node:internal/modules/cjs/loader:1253:18
+      2   66.7%          JS: ~Module._compile node:internal/modules/cjs/loader:1322:37
+      2  100.0%            JS: ~Module._extensions..js node:internal/modules/cjs/loader:1381:37
+      1   33.3%          JS: ^Module._compile node:internal/modules/cjs/loader:1322:37
+      1  100.0%            JS: ~Module._extensions..js node:internal/modules/cjs/loader:1381:37
+     13   10.2%      JS: ^stat node:internal/modules/cjs/loader:184:14
+      7   53.8%        JS: ^Module._findPath node:internal/modules/cjs/loader:609:28
+      6   85.7%          JS: ^Module._resolveFilename node:internal/modules/cjs/loader:1057:35
+      6  100.0%            JS: ^Module._load node:internal/modules/cjs/loader:949:24
+      1   14.3%          JS: ~Module._resolveFilename node:internal/modules/cjs/loader:1057:35
+      1  100.0%            JS: ^Module._load node:internal/modules/cjs/loader:949:24
+      6   46.2%        JS: ^tryFile node:internal/modules/cjs/loader:471:17
+      6  100.0%          JS: ^tryExtensions node:internal/modules/cjs/loader:486:23
+      6  100.0%            JS: ^Module._findPath node:internal/modules/cjs/loader:609:28
+     13   10.2%      JS: ^readFileSync node:fs:450:22
+     13  100.0%        JS: ^Module._extensions..js node:internal/modules/cjs/loader:1381:37
+     13  100.0%          JS: ^Module.load node:internal/modules/cjs/loader:1193:33
+     13  100.0%            JS: ^Module._load node:internal/modules/cjs/loader:949:24
+     10    7.9%      JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+     10  100.0%        JS: ^requireBuiltin node:internal/bootstrap/realm:420:24
+      1   10.0%          JS: ~lazyWebCrypto node:crypto:125:23
+      1  100.0%            JS: ~get node:crypto:370:8
+      1   10.0%          JS: ~getRandomValues node:internal/crypto/webcrypto:992:25
+      1  100.0%            JS: ~randomBytes D:\Code\backend-postgres\node_modules\pg\lib\crypto\utils-webcrypto.js:29:21
+      1   10.0%          JS: ~<anonymous> node:tty:1:1
+      1  100.0%            JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      1   10.0%          JS: ~<anonymous> node:net:1:1
+      1  100.0%            JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      1   10.0%          JS: ~<anonymous> node:internal/streams/readable:1:1
+      1  100.0%            JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      1   10.0%          JS: ~<anonymous> node:internal/streams/operators:1:1
+      1  100.0%            JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      1   10.0%          JS: ~<anonymous> node:internal/crypto/pbkdf2:1:1
+      1  100.0%            JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      1   10.0%          JS: ~<anonymous> node:internal/child_process:1:1
+      1  100.0%            JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      1   10.0%          JS: ~<anonymous> node:http:1:1
+      1  100.0%            JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      1   10.0%          JS: ~<anonymous> node:_http_client:1:1
+      1  100.0%            JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      8    6.3%      C:\Program Files\nodejs\node.exe
+      1   12.5%        JS: ~isIPv6 node:internal/net:38:16
+      1  100.0%          JS: ~isIP node:internal/net:45:14
+      1  100.0%            JS: ~lookup node:dns:140:16
+      1   12.5%        JS: ~createToken D:\Code\backend-postgres\node_modules\@mapbox\node-pre-gyp\node_modules\semver\internal\re.js:35:21
+      1  100.0%          JS: ~<anonymous> D:\Code\backend-postgres\node_modules\@mapbox\node-pre-gyp\node_modules\semver\internal\re.js:1:1
+      1  100.0%            JS: ^Module._compile node:internal/modules/cjs/loader:1322:37
+      1   12.5%        JS: ~_findSeparate D:\Code\backend-postgres\node_modules\sequelize\lib\model.js:1178:29
+      1  100.0%          JS: ~findAll D:\Code\backend-postgres\node_modules\sequelize\lib\model.js:1090:23
+      1  100.0%            C:\Program Files\nodejs\node.exe
+      1   12.5%        JS: ~<anonymous> node:internal/crypto/keys:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:383:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:420:24
+      1   12.5%        JS: ^toNamespacedPath node:path:622:19
+      1  100.0%          JS: ^stat node:internal/modules/cjs/loader:184:14
+      1  100.0%            JS: ^Module._findPath node:internal/modules/cjs/loader:609:28
+      1   12.5%        JS: ^read node:internal/modules/package_json_reader:48:14
+      1  100.0%          JS: *readPackageScope node:internal/modules/package_json_reader:149:26
+      1  100.0%            JS: ^Module._extensions..js node:internal/modules/cjs/loader:1381:37
+      1   12.5%        JS: ^addZone D:\Code\backend-postgres\node_modules\moment-timezone\moment-timezone.js:407:19
+      1  100.0%          JS: ~loadData D:\Code\backend-postgres\node_modules\moment-timezone\moment-timezone.js:528:20
+      1  100.0%            JS: ~<anonymous> D:\Code\backend-postgres\node_modules\moment-timezone\index.js:1:1
+      1   12.5%        JS: ^Module._findPath node:internal/modules/cjs/loader:609:28
+      1  100.0%          JS: ^Module._resolveFilename node:internal/modules/cjs/loader:1057:35
+      1  100.0%            JS: ^Module._load node:internal/modules/cjs/loader:949:24
+      4    3.1%      JS: ^realpathSync node:fs:2625:22
+      3   75.0%        JS: ^toRealPath node:internal/modules/helpers:57:20
+      2   66.7%          JS: ^tryFile node:internal/modules/cjs/loader:471:17
+      2  100.0%            JS: ^tryExtensions node:internal/modules/cjs/loader:486:23
+      1   33.3%          JS: ^Module._findPath node:internal/modules/cjs/loader:609:28
+      1  100.0%            JS: ^Module._resolveFilename node:internal/modules/cjs/loader:1057:35
+      1   25.0%        JS: ^finalizeResolution node:internal/modules/esm/resolve:237:28
+      1  100.0%          JS: ^moduleResolve node:internal/modules/esm/resolve:896:23
+      1  100.0%            JS: ^defaultResolve node:internal/modules/esm/resolve:1064:24
+      2    1.3%    JS: ^Module._findPath node:internal/modules/cjs/loader:609:28
+      2  100.0%      JS: ^Module._resolveFilename node:internal/modules/cjs/loader:1057:35
+      2  100.0%        JS: ^Module._load node:internal/modules/cjs/loader:949:24
+      2  100.0%          JS: ^Module.require node:internal/modules/cjs/loader:1223:36
+      2  100.0%            JS: ^require node:internal/modules/helpers:177:31
+

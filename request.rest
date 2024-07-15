@@ -1,46 +1,42 @@
-GET http://localhost:5000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJBaG1hZCBGaWtyaSBIYWlrYWwiLCJlbWFpbCI6ImhhaWthbEBnbWFpbC5jb20iLCJpYXQiOjE2ODk3ODc2ODUsImV4cCI6MTY4OTc4NzcwNX0.jh1MxW3ZNQ2azXj_va_31rH_2fjVPJwcRkRrN6w26z0
+GET http://localhost:3000/user
 
 ###
-GET http://localhost:5000/products
+GET http://localhost:3000/products
 
 ###
-GET http://localhost:5000/users/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJBaG1hZCBGaWtyaSBIYWlrYWwiLCJlbWFpbCI6ImhhaWthbEBnbWFpbC5jb20iLCJpYXQiOjE2ODk3ODc2ODUsImV4cCI6MTY4OTg3NDA4NX0.SW61oHxU8lhc_mI8q1XP78GVYpxRgoWZZccONOEwJdI
+GET http://localhost:3000/users/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJBZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzIwMjg2OTE3LCJleHAiOjE3MjAyODY5Mzd9.Q-WrHremHuKqBUUz6rybVgkXj2kg61iixF9SZzxnDUQ
 
 ###
 GET http://localhost:5000/products/1
 
 ###
-POST http://localhost:5000/users/
+POST http://localhost:3000/users/
 Content-Type: application/json
 
 {
-  "name": "Admin",
-  "email": "admin@gmail.com",
-  "password": "admin123",
-  "confPassword" : "admin123"
-}
-
-###
-POST http://localhost:5000/products/
-Content-Type: application/json
-
-{
-  "image": "/src/assets/product-images/IrishLatte.png",
-  "title": "Caramel Praline Macchiato",
-  "price": 33000,
-  "desc": "Latte dengan saus Praline dan karamel dengan rasa dan aroma manis.",
-  "category": "Signature"
-}
-
-###
-POST http://localhost:5000/login
-Content-Type: application/json
-
-{
+  "name": "Haikal",
   "email": "haikal@gmail.com",
-  "password": "haikal123"
+  "password": "haikal123",
+  "confPassword" : "haikal123"
+}
+
+###
+POST http://localhost:3000/tarif
+Content-Type: application/json
+
+{
+  "daya": "2200",
+  "tarifperkwh": "1444"
+}
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "username": "haikal",
+  "password": "haikal"
 }
 
 ###
