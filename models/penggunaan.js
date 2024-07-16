@@ -40,7 +40,13 @@ const penggunaanModel = db.define(
   }
 );
 
-penggunaanModel.hasMany(tagihanModel, { foreignKey: "id_penggunaan" });
-tagihanModel.belongsTo(penggunaanModel, { foreignKey: "id_penggunaan" });
+penggunaanModel.hasOne(tagihanModel, {
+  as: "tagihan",
+  foreignKey: "id_penggunaan",
+});
+tagihanModel.belongsTo(penggunaanModel, {
+  as: "penggunaan",
+  foreignKey: "id_penggunaan",
+});
 
 export default penggunaanModel;
