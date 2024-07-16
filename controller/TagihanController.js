@@ -1,8 +1,16 @@
+import pelangganModel from "../models/pelanggan.js";
+import penggunaanModel from "../models/penggunaan.js";
 import tagihanModel from "../models/tagihan.js";
 
 export const getTagihan = async (req, res) => {
   try {
-    const response = await tagihanModel.findAll();
+    const response = await tagihanModel.findAll({
+      include: [
+        { model: penggunaanModel, as: "penggunaan" },
+        { model: pelangganModel, as: "pelanggan" },
+      ],
+      order: [["id_tagihan", "ASC"]],
+    });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
