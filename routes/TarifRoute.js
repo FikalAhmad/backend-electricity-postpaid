@@ -13,6 +13,6 @@ router.get("/tarif", getTarif);
 router.get("/tarif/:id", getTarifById);
 router.post("/tarif", createTarif);
 router.patch("/tarif/:id", updateTarif);
-router.delete("/tarif/:id", deleteTarif);
+router.delete("/tarif", deleteTarif);
 
 export default router;

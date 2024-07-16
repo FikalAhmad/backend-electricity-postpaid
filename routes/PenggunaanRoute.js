@@ -13,6 +13,6 @@ router.get("/penggunaan", getPenggunaan);
 router.get("/penggunaan/:id", getPenggunaanById);
 router.post("/penggunaan", createPenggunaan);
 router.patch("/penggunaan/:id", updatePenggunaan);
-router.delete("/penggunaan", deletePenggunaan);
+router.delete("/penggunaan/:id", deletePenggunaan);
 
 export default router;
