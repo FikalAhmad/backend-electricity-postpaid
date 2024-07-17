@@ -4,7 +4,7 @@ import {
   deleteTagihan,
   getTagihan,
   getTagihanById,
-  jumlahMeter,
+  getTagihanByPelangganId,
   updateTagihan,
 } from "../controller/TagihanController.js";
 
@@ -14,8 +14,8 @@ router.get("/tagihan", getTagihan);
 router.get("/tagihan/:id", getTagihanById);
 router.post("/tagihan", createTagihan);
 router.patch("/tagihan/:id", updateTagihan);
-router.delete("/tagihan", deleteTagihan);
+router.delete("/tagihan/:id", deleteTagihan);
 
-router.get("/jumlah_meter/:bulan/:tahun", jumlahMeter);
+router.get("/tagihanpelanggan/:id", getTagihanByPelangganId);
 
 export default router;

@@ -4,6 +4,7 @@ import {
   deletePenggunaan,
   getPenggunaan,
   getPenggunaanById,
+  getPenggunaanByPelangganId,
   updatePenggunaan,
 } from "../controller/PenggunaanController.js";
 
@@ -14,5 +15,7 @@ router.get("/penggunaan/:id", getPenggunaanById);
 router.post("/penggunaan", createPenggunaan);
 router.patch("/penggunaan/:id", updatePenggunaan);
 router.delete("/penggunaan/:id", deletePenggunaan);
+
+router.get("/detailpenggunaan/:id", getPenggunaanByPelangganId);
 
 export default router;

@@ -1,5 +1,6 @@
 import pelangganModel from "../models/pelanggan.js";
 import penggunaanModel from "../models/penggunaan.js";
+import tagihanModel from "../models/tagihan.js";
 
 export const getPenggunaan = async (req, res) => {
   try {
@@ -25,31 +26,45 @@ export const getPenggunaanById = async (req, res) => {
     console.log(error.message);
   }
 };
-
-// export const createPenggunaan = async (req, res) => {
-//   try {
-//     await penggunaanModel.create(req.body);
-//     res.status(201).json({ msg: "Penggunaan Created" });
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-export const createPenggunaan = async (req, res) => {
-  const { id_pelanggan, bulan, tahun, meter_awal, meter_akhir } = req.body;
+export const getPenggunaanByPelangganId = async (req, res) => {
   try {
-    const result = await sequelize.query(
-      `INSERT INTO penggunaan (id_pelanggan, bulan, tahun, meter_awal, meter_akhir) 
-      VALUES (:id_pelanggan, :bulan, :tahun, :meter_awal, :meter_akhir) RETURNING *`,
-      {
-        replacements: { id_pelanggan, bulan, tahun, meter_awal, meter_akhir },
-        type: Sequelize.QueryTypes.INSERT
-      }
-    );
-    res.json(result[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const response = await penggunaanModel.findAll({
+      where: {
+        id_pelanggan: req.params.id,
+      },
+      include: { model: tagihanModel, as: "tagihan" },
+      order: [["id_penggunaan", "ASC"]],
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
   }
 };
+
+export const createPenggunaan = async (req, res) => {
+  try {
+    await penggunaanModel.create(req.body);
+    res.status(201).json({ msg: "Penggunaan Created" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+// export const createPenggunaan = async (req, res) => {
+//   const { id_pelanggan, bulan, tahun, meter_awal, meter_akhir } = req.body;
+//   try {
+//     const result = await sequelize.query(
+//       `INSERT INTO penggunaan (id_pelanggan, bulan, tahun, meter_awal, meter_akhir)
+//       VALUES (:id_pelanggan, :bulan, :tahun, :meter_awal, :meter_akhir) RETURNING *`,
+//       {
+//         replacements: { id_pelanggan, bulan, tahun, meter_awal, meter_akhir },
+//         type: Sequelize.QueryTypes.INSERT
+//       }
+//     );
+//     res.json(result[0]);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
 
 export const updatePenggunaan = async (req, res) => {
   try {

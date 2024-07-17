@@ -21,7 +21,19 @@ export const getTagihanById = async (req, res) => {
   try {
     const response = await tagihanModel.findOne({
       where: {
-        userId: req.params.id,
+        id_tagihan: req.params.id,
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const getTagihanByPelangganId = async (req, res) => {
+  try {
+    const response = await tagihanModel.findAll({
+      where: {
+        id_pelanggan: req.params.id,
       },
     });
     res.status(200).json(response);
@@ -56,7 +68,7 @@ export const deleteTagihan = async (req, res) => {
   try {
     await tagihanModel.destroy({
       where: {
-        id: req.params.id,
+        id_tagihan: req.params.id,
       },
     });
     res.status(200).json({ msg: "Tagihan Deleted" });
