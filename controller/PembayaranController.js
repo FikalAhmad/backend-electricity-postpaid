@@ -1,8 +1,15 @@
+import pelangganModel from "../models/pelanggan.js";
 import pembayaranModel from "../models/pembayaran.js";
+import tagihanModel from "../models/tagihan.js";
 
 export const getPembayaran = async (req, res) => {
   try {
-    const response = await pembayaranModel.findAll();
+    const response = await pembayaranModel.findAll({
+      include: [
+        { model: pelangganModel, as: "pelanggan" },
+        { model: tagihanModel, as: "tagihan" },
+      ],
+    });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);

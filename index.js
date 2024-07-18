@@ -7,16 +7,17 @@ import TarifRoute from "./routes/TarifRoute.js";
 import TagihanRoute from "./routes/TagihanRoute.js";
 import PembayaranRoute from "./routes/PembayaranRoute.js";
 import PenggunaanRoute from "./routes/PenggunaanRoute.js";
+import db from "./config/Database.js";
+import dotenv from "dotenv";
 
 import userModel from "./models/user.js";
 import levelModel from "./models/level.js";
 import pembayaranModel from "./models/pembayaran.js";
-import db from "./config/Database.js";
 import tarifModel from "./models/tarif.js";
 import pelangganModel from "./models/pelanggan.js";
 import penggunaanModel from "./models/penggunaan.js";
 import tagihanModel from "./models/tagihan.js";
-import dotenv from "dotenv";
+import { getDataTotal } from "./controller/CustomController.js";
 
 const app = express();
 dotenv.config();
@@ -61,4 +62,5 @@ app.use(TarifRoute);
 app.use(TagihanRoute);
 app.use(PembayaranRoute);
 app.use(PenggunaanRoute);
+app.get("/totaldata", getDataTotal);
 app.listen(3000, () => console.log("Server up and running..."));

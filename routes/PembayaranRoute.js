@@ -13,6 +13,6 @@ router.get("/pembayaran", getPembayaran);
 router.get("/pembayaran/:id", getPembayaranById);
 router.post("/pembayaran", createPembayaran);
 router.patch("/pembayaran/:id", updatePembayaran);
-router.delete("/pembayaran", deletePembayaran);
+router.delete("/pembayaran/:id", deletePembayaran);
 
 export default router;

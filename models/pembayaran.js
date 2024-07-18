@@ -28,6 +28,10 @@ const pembayaranModel = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    biaya_admin: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     total_bayar: {
       type: DataTypes.INTEGER,
       allowNull: false,
