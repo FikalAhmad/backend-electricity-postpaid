@@ -1,10 +1,15 @@
 import pelangganModel from "../models/pelanggan.js";
+import penggunaanModel from "../models/penggunaan.js";
 import tarifModel from "../models/tarif.js";
+import bcrypt from "bcrypt";
 
 export const getPelanggan = async (req, res) => {
   try {
     const response = await pelangganModel.findAll({
-      include: { model: tarifModel, as: "tarif" },
+      include: [
+        { model: tarifModel, as: "tarif" },
+        { model: penggunaanModel, as: "penggunaans" },
+      ],
       order: [["id_pelanggan", "ASC"]],
     });
     res.status(200).json(response);
@@ -27,8 +32,19 @@ export const getPelangganById = async (req, res) => {
 };
 
 export const createPelanggan = async (req, res) => {
+  const { username, password, nomor_kwh, nama_pelanggan, alamat, id_tarif } =
+    req.body;
+  const salt = await bcrypt.genSalt();
+  const hashPassword = await bcrypt.hash(password, salt);
   try {
-    await pelangganModel.create(req.body);
+    await pelangganModel.create({
+      username,
+      password: hashPassword,
+      nomor_kwh,
+      nama_pelanggan,
+      alamat,
+      id_tarif,
+    });
     res.status(201).json({ msg: "Pelanggan Created" });
   } catch (error) {
     console.log(error.message);
@@ -68,12 +84,25 @@ export const LoginPelanggan = async (req, res) => {
         username: req.body.username,
       },
     });
-    const match = await bcrypt.compare(req.body.password, user[0].password);
-    if (!match) return res.status(400).json({ msg: "Wrong Password" });
-    res.status(200).json({ msg: "Pelanggan Login" });
+    const match = await bcrypt.compare(
+      req.body.password,
+      pelanggan[0].password
+    );
+    if (!match) return res.status(400).json({ msg: "Password salah" });
+    const userId = pelanggan[0].id_pelanggan;
+    const username = pelanggan[0].username;
+    const namaUser = pelanggan[0].nama_pelanggan;
+    res.status(200).json({
+      userId,
+      username,
+      namaUser,
+      mode: "Pelanggan",
+      isLogin: true,
+      msg: "Login Berhasil",
+    });
   } catch (error) {
     console.log(error.message);
-    return res.status(404).json({ msg: "Pelanggan tidak ditemukan" });
+    return res.status(404).json({ msg: "Username tidak ditemukan" });
   }
 };
 

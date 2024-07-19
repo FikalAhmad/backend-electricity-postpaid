@@ -49,22 +49,6 @@ export const createPenggunaan = async (req, res) => {
     console.log(error.message);
   }
 };
-// export const createPenggunaan = async (req, res) => {
-//   const { id_pelanggan, bulan, tahun, meter_awal, meter_akhir } = req.body;
-//   try {
-//     const result = await sequelize.query(
-//       `INSERT INTO penggunaan (id_pelanggan, bulan, tahun, meter_awal, meter_akhir)
-//       VALUES (:id_pelanggan, :bulan, :tahun, :meter_awal, :meter_akhir) RETURNING *`,
-//       {
-//         replacements: { id_pelanggan, bulan, tahun, meter_awal, meter_akhir },
-//         type: Sequelize.QueryTypes.INSERT
-//       }
-//     );
-//     res.json(result[0]);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
 
 export const updatePenggunaan = async (req, res) => {
   try {

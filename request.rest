@@ -11,14 +11,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hb
 GET http://localhost:5000/products/1
 
 ###
-POST http://localhost:3000/users/
+PATCH http://localhost:3000/pelanggan/5
 Content-Type: application/json
 
 {
-  "name": "Haikal",
-  "email": "haikal@gmail.com",
-  "password": "haikal123",
-  "confPassword" : "haikal123"
+  "id_pelanggan": 6,
+  "bulan": "6",
+  "tahun": "2024",
+  "meter_awal": 234,
+  "meter_akhir": 542
 }
 
 ###

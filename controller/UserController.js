@@ -27,15 +27,6 @@ export const getUserById = async (req, res) => {
   }
 };
 
-// export const createUser = async (req, res) => {
-//   try {
-//     await userModel.create(req.body);
-//     res.status(201).json({ msg: "User Created" });
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
 export const updateUser = async (req, res) => {
   try {
     await userModel.update(req.body, {
@@ -85,32 +76,24 @@ export const Login = async (req, res) => {
       where: {
         username: req.body.username,
       },
+      include: { model: levelModel, as: "level" },
     });
     const match = await bcrypt.compare(req.body.password, user[0].password);
-    if (!match) return res.status(400).json({ msg: "Wrong Password" });
-    res.status(200).json({ msg: "User Login" });
+    if (!match) return res.status(400).json({ msg: "Password salah" });
+    const userId = user[0].id_user;
+    const username = user[0].username;
+    const namaUser = user[0].nama_admin;
+    const mode = user[0].level.nama_level;
+    res.status(200).json({
+      userId,
+      username,
+      namaUser,
+      isLogin: true,
+      mode,
+      msg: "Login Berhasil",
+    });
   } catch (error) {
     console.log(error.message);
     return res.status(404).json({ msg: "Username tidak ditemukan" });
   }
-};
-
-export const Logout = async (req, res) => {
-  const user = await User.findAll({
-    where: {
-      refresh_token: refreshToken,
-    },
-  });
-  if (!user[0]) return res.sendStatus(204);
-  const userId = user[0].id;
-  await User.update(
-    { refresh_token: null },
-    {
-      where: {
-        id: userId,
-      },
-    }
-  );
-  res.clearCookie("refreshToken");
-  return res.sendStatus(200);
 };
