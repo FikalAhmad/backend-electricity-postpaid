@@ -10,13 +10,13 @@ import PenggunaanRoute from "./routes/PenggunaanRoute.js";
 import db from "./config/Database.js";
 import dotenv from "dotenv";
 
-import userModel from "./models/user.js";
-import levelModel from "./models/level.js";
-import pembayaranModel from "./models/pembayaran.js";
-import tarifModel from "./models/tarif.js";
-import pelangganModel from "./models/pelanggan.js";
-import penggunaanModel from "./models/penggunaan.js";
-import tagihanModel from "./models/tagihan.js";
+import UserModel from "./models/user.js";
+import LevelModel from "./models/level.js";
+import PembayaranModel from "./models/pembayaran.js";
+import TarifModel from "./models/tarif.js";
+import PelangganModel from "./models/pelanggan.js";
+import PenggunaanModel from "./models/penggunaan.js";
+import TagihanModel from "./models/tagihan.js";
 import { getDataTotal } from "./controller/CustomController.js";
 
 const app = express();
@@ -25,15 +25,15 @@ dotenv.config();
 try {
   await db.authenticate();
   console.log("Database Connected...");
-  // levelModel.sync();
-  // userModel.sync();
-  // tarifModel.sync();
-  // pelangganModel.sync();
-  // penggunaanModel.sync();
-  // tagihanModel.sync();
-  // pembayaranModel.sync();
+  // LevelModel.sync();
+  // UserModel.sync();
+  // TarifModel.sync();
+  // PelangganModel.sync();
+  // PenggunaanModel.sync();
+  // TagihanModel.sync();
+  // PembayaranModel.sync();
 } catch (error) {
-  console.log("error di root:", error);
+  console.log(error);
 }
 const allowedOrigins = ["http://localhost:5173/"];
 app.use(
