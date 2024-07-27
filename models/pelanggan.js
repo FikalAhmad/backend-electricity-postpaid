@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
-import pembayaranModel from "./pembayaran.js";
-import tagihanModel from "./tagihan.js";
-import penggunaanModel from "./penggunaan.js";
+import PembayaranModel from "./pembayaran.js";
+import TagihanModel from "./tagihan.js";
+import PenggunaanModel from "./penggunaan.js";
 
 const { DataTypes } = Sequelize;
 
-const pelangganModel = db.define(
+const PelangganModel = db.define(
   "pelanggan",
   {
     id_pelanggan: {
@@ -45,12 +45,13 @@ const pelangganModel = db.define(
     timestamps: false,
   }
 );
-pelangganModel.hasMany(pembayaranModel, { foreignKey: "id_pelanggan" });
-pembayaranModel.belongsTo(pelangganModel, { foreignKey: "id_pelanggan" });
+PelangganModel.hasMany(PembayaranModel, { foreignKey: "id_pelanggan" });
+PembayaranModel.belongsTo(PelangganModel, { foreignKey: "id_pelanggan" });
 
-pelangganModel.hasMany(tagihanModel, { foreignKey: "id_pelanggan" });
-tagihanModel.belongsTo(pelangganModel, { foreignKey: "id_pelanggan" });
+PelangganModel.hasMany(TagihanModel, { foreignKey: "id_pelanggan" });
+TagihanModel.belongsTo(PelangganModel, { foreignKey: "id_pelanggan" });
 
-pelangganModel.hasMany(penggunaanModel, { foreignKey: "id_pelanggan" });
-penggunaanModel.belongsTo(pelangganModel, { foreignKey: "id_pelanggan" });
-export default pelangganModel;
+PelangganModel.hasMany(PenggunaanModel, { foreignKey: "id_pelanggan" });
+PenggunaanModel.belongsTo(PelangganModel, { foreignKey: "id_pelanggan" });
+
+export default PelangganModel;

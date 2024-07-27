@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
-import pembayaranModel from "./pembayaran.js";
+import PembayaranModel from "./pembayaran.js";
 
 const { DataTypes } = Sequelize;
 
-const tagihanModel = db.define(
+const TagihanModel = db.define(
   "tagihan",
   {
     id_tagihan: {
@@ -44,7 +44,7 @@ const tagihanModel = db.define(
   }
 );
 
-tagihanModel.hasMany(pembayaranModel, { foreignKey: "id_tagihan" });
-pembayaranModel.belongsTo(tagihanModel, { foreignKey: "id_tagihan" });
+TagihanModel.hasMany(PembayaranModel, { foreignKey: "id_tagihan" });
+PembayaranModel.belongsTo(TagihanModel, { foreignKey: "id_tagihan" });
 
-export default tagihanModel;
+export default TagihanModel;

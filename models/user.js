@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
-import pembayaranModel from "./pembayaran.js";
+import PembayaranModel from "./pembayaran.js";
 
 const { DataTypes } = Sequelize;
 
-const userModel = db.define(
+const UserModel = db.define(
   "user",
   {
     id_user: {
@@ -33,10 +33,16 @@ const userModel = db.define(
   {
     freezeTableName: true,
     timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ["id_user"],
+      },
+    ],
   }
 );
 
-userModel.hasMany(pembayaranModel, { foreignKey: "id_user" });
-pembayaranModel.belongsTo(userModel, { foreignKey: "id_user" });
+UserModel.hasMany(PembayaranModel, { foreignKey: "id_user" });
+PembayaranModel.belongsTo(UserModel, { foreignKey: "id_user" });
 
-export default userModel;
+export default UserModel;

@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
-import userModel from "./user.js";
+import UserModel from "./user.js";
 
 const { DataTypes } = Sequelize;
 
-const levelModel = db.define(
+const LevelModel = db.define(
   "level",
   {
     id_level: {
@@ -23,7 +23,7 @@ const levelModel = db.define(
     timestamps: false,
   }
 );
-levelModel.hasMany(userModel, { foreignKey: "id_level" });
-userModel.belongsTo(levelModel, { foreignKey: "id_level", as: "level" });
+LevelModel.hasMany(UserModel, { foreignKey: "id_level" });
+UserModel.belongsTo(LevelModel, { foreignKey: "id_level", as: "level" });
 
-export default levelModel;
+export default LevelModel;

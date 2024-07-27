@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
-import pelangganModel from "./pelanggan.js";
+import PelangganModel from "./pelanggan.js";
 
 const { DataTypes } = Sequelize;
 
-const tarifModel = db.define(
+const TarifModel = db.define(
   "tarif",
   {
     id_tarif: {
@@ -28,7 +28,7 @@ const tarifModel = db.define(
   }
 );
 
-tarifModel.hasMany(pelangganModel, { foreignKey: "id_tarif" });
-pelangganModel.belongsTo(tarifModel, { foreignKey: "id_tarif" });
+TarifModel.hasMany(PelangganModel, { foreignKey: "id_tarif" });
+PelangganModel.belongsTo(TarifModel, { foreignKey: "id_tarif" });
 
-export default tarifModel;
+export default TarifModel;
