@@ -1,4 +1,5 @@
 GET http://localhost:3000/user
+X-User-Id: 14
 
 ###
 GET http://localhost:3000/products
@@ -8,11 +9,19 @@ GET http://localhost:3000/users/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJBZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzIwMjg2OTE3LCJleHAiOjE3MjAyODY5Mzd9.Q-WrHremHuKqBUUz6rybVgkXj2kg61iixF9SZzxnDUQ
 
 ###
-GET http://localhost:5000/products/1
+GET http://localhost:3000/pelanggan
+Content-Type: :application/json
+X-User-Id: 12
+
+###
+GET http://localhost:3000/pembayaran
+Content-Type: :application/json
+X-User-Id: 12
 
 ###
 PATCH http://localhost:3000/pelanggan/5
 Content-Type: application/json
+X-User-Id: 12
 
 {
   "id_pelanggan": 6,
@@ -36,8 +45,8 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-  "username": "haikal",
-  "password": "haikal"
+  "username": "balramadan",
+  "password": "balramadan"
 }
 
 ###

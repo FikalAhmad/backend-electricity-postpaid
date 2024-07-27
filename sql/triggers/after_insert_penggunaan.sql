@@ -30,3 +30,5 @@ BEGIN
     INSERT INTO tagihan (penggunaan_id, jumlah_meter, total_tagihan) VALUES (NEW.penggunaan_id, jumlah_meter, total);
 END //
 DELIMITER ;
+
+
