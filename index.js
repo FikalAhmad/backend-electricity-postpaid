@@ -25,13 +25,13 @@ dotenv.config();
 try {
   await db.authenticate();
   console.log("Database Connected...");
-  // LevelModel.sync();
-  // UserModel.sync();
-  // TarifModel.sync();
-  // PelangganModel.sync();
-  // PenggunaanModel.sync();
-  // TagihanModel.sync();
-  // PembayaranModel.sync();
+  LevelModel.sync();
+  UserModel.sync();
+  TarifModel.sync();
+  PelangganModel.sync();
+  PenggunaanModel.sync();
+  TagihanModel.sync();
+  PembayaranModel.sync();
 } catch (error) {
   console.log(error);
 }
@@ -63,4 +63,4 @@ app.use(TagihanRoute);
 app.use(PembayaranRoute);
 app.use(PenggunaanRoute);
 app.get("/totaldata", getDataTotal);
-app.listen(3000, () => console.log("Server up and running..."));
+app.listen(process.env.PORT, () => console.log("Server up and running..."));
