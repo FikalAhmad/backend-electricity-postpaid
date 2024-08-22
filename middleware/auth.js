@@ -4,12 +4,16 @@ import UserModel from "../models/user.js";
 /**
  * Memeriksa apakah pengguna memiliki peran yang sesuai.
  *
+ * @async
  * @param {number|string} userId - id_user yang akan diperiksa.
  * @param {string[]} requiredRole - Daftar peran yang diizinkan.
  * @returns {Promise<boolean>} - `true` jika pengguna memiliki salah satu peran yang diperlukan, `false` jika tidak.
  * @throws {Error} - Jika terjadi kesalahan saat memeriksa peran user.
  */
 const checkUserRole = async (userId, requiredRole) => {
+  // userId: ID user.
+  // requiredRole: role apa yang hanya bisa diakses routenya.
+
   try {
     const user = await UserModel.findByPk(userId, {
       include: [{ model: LevelModel, as: "level", attributes: ["nama_level"] }],
@@ -34,6 +38,10 @@ const checkUserRole = async (userId, requiredRole) => {
  * @returns {void}
  */
 export const authenticateUser = (req, res, next) => {
+  //req: Request object.
+  //res: Response object.
+  //next: ke proses selanjutnya setelah authenticate selesai dijalankan.
+
   const userId = req.headers["x-user-id"];
   if (!userId) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -49,6 +57,7 @@ export const authenticateUser = (req, res, next) => {
  * @returns {Function} - Middleware function.
  */
 export const authorizeRole = (requiredRole) => {
+  //requiredRole: pengecekan role untuk akses tertentu.
   return async (req, res, next) => {
     try {
       const userId = req.id_user;
