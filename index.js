@@ -35,7 +35,7 @@ try {
 } catch (error) {
   console.log(error);
 }
-const allowedOrigins = ["http://localhost:5173/"];
+const allowedOrigins = ["https://kalectric.vercel.app/"];
 app.use(
   cors({
     origin: function (origin, callback) {
