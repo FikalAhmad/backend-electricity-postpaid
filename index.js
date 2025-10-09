@@ -35,20 +35,21 @@ try {
 } catch (error) {
   console.log(error);
 }
-const allowedOrigins = ["http://localhost:5173/"];
+const allowedOrigins = ["http://localhost:5173"];
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) {
-        return callback(null, true);
-      }
+      // Jika tidak ada origin (misal: request dari Postman atau curl)
+      if (!origin) return callback(null, true);
 
+      // Cek apakah origin termasuk dalam daftar yang diizinkan
       if (allowedOrigins.includes(origin)) {
+        return callback(null, true); // izinkan
+      } else {
         const msg =
           "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
+        return callback(new Error(msg), false); // tolak
       }
-      return callback(null, true);
     },
   })
 );

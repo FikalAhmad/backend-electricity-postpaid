@@ -105,6 +105,9 @@ export const deleteUser = async (req, res) => {
  */
 export const createUser = async (req, res) => {
   const { nama, username, password, role } = req.body;
+  if (!nama || !username || !password || !role) {
+    return res.status(400).json({ msg: "Semua field wajib diisi!" });
+  }
   // genSalt() digunakan untuk menghasilkan "salt" yang merupakan nilai acak yang ditambahkan ke password sebelum proses hashing.
   const salt = await bcrypt.genSalt();
   // bcrypt.hash() digunakan untuk menghasilkan hash dari password dengan menggunakan salt yang dihasilkan.
